@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scenes/Levels/Map2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Heroes/PrototypeHero.png" type="Texture" id=2]
@@ -12,7 +12,11 @@
 [ext_resource path="res://Scenes/MainScenes/UI.gd" type="Script" id=10]
 [ext_resource path="res://Assets/Icons/play_nobg.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Icons/ff_nobg.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Icons/coin.png" type="Texture" id=13]
 [ext_resource path="res://Resources/Tilesets/UI-elements-64x64.png" type="Texture" id=14]
+[ext_resource path="res://Resources/Fonts/Berry Rotunda.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Resources/Fonts/OldEng_40.tres" type="DynamicFont" id=16]
+[ext_resource path="res://Scenes/UI/Tooltip.tscn" type="PackedScene" id=17]
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 14 )
@@ -77,6 +81,18 @@ region = Rect2( 778, 212, 44, 24 )
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 14 )
 region = Rect2( 906, 212, 44, 24 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 5 )
+region = Rect2( 3, 99, 26, 26 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 14
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = 6
+extra_spacing_char = 1
+font_data = ExtResource( 15 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 5 )
@@ -400,7 +416,7 @@ margin_right = 664.0
 margin_bottom = 181.0
 size_flags_horizontal = 3
 
-[node name="PlayerPortrait2" type="NinePatchRect" parent="UI/HUD/Dashboard/Row"]
+[node name="Inventory" type="NinePatchRect" parent="UI/HUD/Dashboard/Row"]
 margin_left = 668.0
 margin_right = 818.0
 margin_bottom = 181.0
@@ -412,73 +428,122 @@ patch_margin_top = 21
 patch_margin_right = 21
 patch_margin_bottom = 21
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="UI/HUD/Dashboard/Row/PlayerPortrait2"]
+[node name="Col" type="VBoxContainer" parent="UI/HUD/Dashboard/Row/Inventory"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = -8.0
-margin_bottom = -20.0
+margin_bottom = -16.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/HUD/Dashboard/Row/Inventory/Col"]
+margin_right = 134.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+texture = SubResource( 15 )
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Row" type="HBoxContainer" parent="UI/HUD/Dashboard/Row/Inventory/Col/NinePatchRect"]
+margin_left = 10.0
+margin_top = 5.0
+margin_right = 134.0
+margin_bottom = 25.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/Dashboard/Row/Inventory/Col/NinePatchRect/Row"]
+margin_top = 1.0
+margin_right = 18.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 18, 18 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 13 )
+expand = true
+
+[node name="Gold" type="Label" parent="UI/HUD/Dashboard/Row/Inventory/Col/NinePatchRect/Row"]
+margin_left = 22.0
+margin_right = 124.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 14 )
+text = "50"
+
+[node name="GridContainer" type="GridContainer" parent="UI/HUD/Dashboard/Row/Inventory/Col"]
+margin_top = 34.0
+margin_right = 134.0
+margin_bottom = 157.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.09
 columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect9" type="TextureRect" parent="UI/HUD/Dashboard/Row/PlayerPortrait2/GridContainer"]
+[node name="TextureRect9" type="TextureRect" parent="UI/HUD/Dashboard/Row/Inventory/Col/GridContainer"]
 margin_right = 26.0
 margin_bottom = 26.0
 texture = SubResource( 10 )
 
-[node name="TextureRect10" type="TextureRect" parent="UI/HUD/Dashboard/Row/PlayerPortrait2/GridContainer"]
+[node name="TextureRect10" type="TextureRect" parent="UI/HUD/Dashboard/Row/Inventory/Col/GridContainer"]
 margin_left = 30.0
 margin_right = 56.0
 margin_bottom = 26.0
 texture = SubResource( 10 )
 
-[node name="TextureRect11" type="TextureRect" parent="UI/HUD/Dashboard/Row/PlayerPortrait2/GridContainer"]
+[node name="TextureRect11" type="TextureRect" parent="UI/HUD/Dashboard/Row/Inventory/Col/GridContainer"]
 margin_left = 60.0
 margin_right = 86.0
 margin_bottom = 26.0
 texture = SubResource( 10 )
 
-[node name="TextureRect12" type="TextureRect" parent="UI/HUD/Dashboard/Row/PlayerPortrait2/GridContainer"]
+[node name="TextureRect12" type="TextureRect" parent="UI/HUD/Dashboard/Row/Inventory/Col/GridContainer"]
 margin_top = 30.0
 margin_right = 26.0
 margin_bottom = 56.0
 texture = SubResource( 10 )
 
-[node name="TextureRect13" type="TextureRect" parent="UI/HUD/Dashboard/Row/PlayerPortrait2/GridContainer"]
+[node name="TextureRect13" type="TextureRect" parent="UI/HUD/Dashboard/Row/Inventory/Col/GridContainer"]
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 56.0
 margin_bottom = 56.0
 texture = SubResource( 10 )
 
-[node name="TextureRect14" type="TextureRect" parent="UI/HUD/Dashboard/Row/PlayerPortrait2/GridContainer"]
+[node name="TextureRect14" type="TextureRect" parent="UI/HUD/Dashboard/Row/Inventory/Col/GridContainer"]
 margin_left = 60.0
 margin_top = 30.0
 margin_right = 86.0
 margin_bottom = 56.0
 texture = SubResource( 10 )
 
-[node name="TextureRect15" type="TextureRect" parent="UI/HUD/Dashboard/Row/PlayerPortrait2/GridContainer"]
+[node name="TextureRect15" type="TextureRect" parent="UI/HUD/Dashboard/Row/Inventory/Col/GridContainer"]
 margin_top = 60.0
 margin_right = 26.0
 margin_bottom = 86.0
 texture = SubResource( 10 )
 
-[node name="TextureRect16" type="TextureRect" parent="UI/HUD/Dashboard/Row/PlayerPortrait2/GridContainer"]
+[node name="TextureRect16" type="TextureRect" parent="UI/HUD/Dashboard/Row/Inventory/Col/GridContainer"]
 margin_left = 30.0
 margin_top = 60.0
 margin_right = 56.0
 margin_bottom = 86.0
 texture = SubResource( 10 )
 
-[node name="TextureRect17" type="TextureRect" parent="UI/HUD/Dashboard/Row/PlayerPortrait2/GridContainer"]
+[node name="TextureRect17" type="TextureRect" parent="UI/HUD/Dashboard/Row/Inventory/Col/GridContainer"]
 margin_left = 60.0
 margin_top = 60.0
 margin_right = 86.0
@@ -545,6 +610,22 @@ margin_left = 215.0
 margin_right = 226.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
+
+[node name="Tooltip" parent="UI/HUD" instance=ExtResource( 17 )]
+visible = false
+margin_left = 234.0
+margin_top = 951.0
+margin_right = -1686.0
+margin_bottom = -129.0
+
+[node name="Label" type="Label" parent="UI"]
+margin_right = 260.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 16 )
+text = "Difficulty: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CursorDetection" type="Area2D" parent="."]
 script = ExtResource( 4 )

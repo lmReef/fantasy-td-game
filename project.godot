@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 GameData="*res://Singletons/GameData.gd"
 CursorScript="*res://Singletons/CursorScript.gd"
 WaveData="*res://Singletons/WaveData.gd"
+MobData="*res://Singletons/MobData.gd"
 
 [display]
 

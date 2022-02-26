@@ -6,11 +6,15 @@ func _ready():
 	# set the hotbar slot types; 'Slot1': 'Missle'
 	for i in get_tree().get_nodes_in_group('build_buttons'):
 		if hotbar_towers[i.get_name()]: 
+			var temp = load('res://Scenes/Towers/' + hotbar_towers[i.get_name()].name + '.tscn').instance()
 			i.set_icon(hotbar_towers[i.get_name()].icon_location)
 			i.type = hotbar_towers[i.get_name()].name
+			i.stats = temp.stats
+			temp.queue_free()
 			
 	WaveData.connect('wave_over', self, 'move_button_up')
 	GameData.connect('level_up', self, 'update_ui_level')
+	GameData.connect('gold_updated', self, 'update_ui_gold')
 		
 # TODO: these could probably use signals for a bit of performance savings
 func _process(delta):
@@ -25,7 +29,7 @@ func set_tower_preview(tower_type, mouse_pos):
 	# range indicator
 	var range_texture = Sprite.new()
 	range_texture.position = Vector2(32,32)
-	var scaling = drag_tower.tower_range / 600.0
+	var scaling = drag_tower.stats.tower_range / 600.0
 	range_texture.scale = Vector2(scaling, scaling)
 	var texture = load('res://Assets/UI/range_overlay.png')
 	range_texture.texture = texture
@@ -63,6 +67,14 @@ func update_ui_bars():
 func update_ui_level():
 	$HUD/Dashboard/Row/PlayerPortrait/LevelIcon/Level.text = String(GameData.level)
 
+func update_ui_gold():
+	$HUD/Dashboard/Row/Inventory/Col/NinePatchRect/Row/Gold.text = String(GameData.gold)
+	for i in get_tree().get_nodes_in_group('build_buttons'):
+		if GameData.gold < i.stats.cost:
+			i.modulate = Color('938383')
+		else:
+			i.modulate = Color('ffffff')
+
 #
 # GameControls
 #
@@ -90,8 +102,8 @@ func _on_Fastforward_pressed():
 	if get_parent().build_mode:
 		get_parent().cancel_build_mode()
 		
-	if Engine.get_time_scale() == 2.0:
+	if Engine.get_time_scale() != 1.0:
 		Engine.set_time_scale(1.0)
 	else:
-		Engine.set_time_scale(2.0)
+		Engine.set_time_scale(3.0)
 

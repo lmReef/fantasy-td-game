@@ -11,6 +11,7 @@ var max_health = 10
 var gold = 50
 
 signal level_up
+signal gold_updated
 
 var hotbar_towers = {
 	'Slot1': {
@@ -47,7 +48,7 @@ var hotbar_towers = {
 func level_up():
 	level += 1
 	min_experience = max_experience
-	max_experience = level * 100 * 1.1
+	max_experience = int(level * 100 * (WaveData.difficulty * 0.5))
 	emit_signal("level_up")
 	
 	# check for xp overflow
@@ -59,3 +60,8 @@ func award_experience(awarded):
 	
 	if experience >= max_experience:
 		level_up()
+		
+func update_gold(amount):
+	gold += amount
+	emit_signal('gold_updated')
+

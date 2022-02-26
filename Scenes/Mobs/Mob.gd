@@ -4,18 +4,23 @@ var health
 var movespeed
 var experience
 var damage
+var gold
 
 var dead = false
 
-func _init(_health = 0, _movespeed = 0, _experience = 0, _damage = 1).():
-	health = _health
-	movespeed = _movespeed
-	experience = _experience
-	damage = _damage
+func _init(stats).():
+	health = stats.health
+	movespeed = stats.movespeed
+	experience = stats.experience
+	damage = stats.damage
+	gold = stats.gold
 	
 func _ready():
+	apply_difficulty_scaling()
+	
 	$HealthBar.max_value = health
 	$HealthBar.value = health
+	set_as_toplevel(true)
 	$HealthBar.set_as_toplevel(true)
 
 func _process(delta):
@@ -24,6 +29,9 @@ func _process(delta):
 		GameData.health -= damage
 		queue_free()
 	#flip_sprite()
+	
+func apply_difficulty_scaling():
+	health = health * (WaveData.difficulty * 0.15)
 	
 func move(delta):
 	set_offset(get_offset() + movespeed * delta)
@@ -48,6 +56,7 @@ func on_hit(damage):
 func on_dead():
 	# award $$$
 	GameData.award_experience(experience)
+	GameData.update_gold(gold)
 	WaveData.mob_died()
 	$KinematicBody2D.queue_free()
 	$HealthBar.queue_free()
