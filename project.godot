@@ -21,6 +21,10 @@ CursorScript="*res://Singletons/CursorScript.gd"
 WaveData="*res://Singletons/WaveData.gd"
 MobData="*res://Singletons/MobData.gd"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/width=1920

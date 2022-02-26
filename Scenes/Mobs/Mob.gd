@@ -58,8 +58,8 @@ func on_dead():
 	GameData.award_experience(experience)
 	GameData.update_gold(gold)
 	WaveData.mob_died()
-	$KinematicBody2D.queue_free()
-	$HealthBar.queue_free()
+	#$KinematicBody2D.queue_free()
+	#$HealthBar.queue_free()
 	yield(get_tree().create_timer(0.2), "timeout")
 	self.queue_free()
 

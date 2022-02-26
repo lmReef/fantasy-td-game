@@ -21,13 +21,6 @@ var ready = true
 func _init(_stats).():
 	stats = _stats
 
-#func _init(_tower_range = 0, _damage = 0, _attack_speed = 0, _attack_type = 'Projectile', _cost = 20).():
-#	tower_range = _tower_range
-#	damage = _damage
-#	attack_speed = _attack_speed
-#	attack_type = _attack_type
-#	cost = _cost
-
 func _ready():
 	# set the range of the towers area2d
 	$Range/Radius.shape.radius = stats.tower_range / 2 # sets radius not diameter
@@ -66,7 +59,7 @@ func attack():
 	yield(get_tree().create_timer(stats.attack_speed), "timeout")
 	ready = true
 	
-func attack_with_projectile(texture):
+func attack_with_projectile(_texture):
 	var proj = Projectile.instance()
 	proj.setup(target.global_position)
 	attack()
@@ -78,7 +71,7 @@ func _on_Range_body_entered(body):
 func _on_Range_body_exited(body):
 	mobs.erase(body.get_parent())
 	
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	$AnimationPlayer.play('idle')
 
 # change cursor on hover

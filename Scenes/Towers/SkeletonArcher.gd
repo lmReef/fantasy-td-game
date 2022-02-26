@@ -13,10 +13,7 @@ var _stats = {
 func _init().(_stats):
 	pass
 
-#func _init().(350, 12, 1, 'Projectile', 20):
-#	pass
-
-# override the default tower attack
+# TODO: override the default tower attack
 func attack():
 	.attack()
 	#.attack_with_projectile(projectile_texture)

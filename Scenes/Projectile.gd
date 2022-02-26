@@ -6,7 +6,7 @@ var velocity
 
 #func _init(_target, _speed = 12, _texture = null).():
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if target:
 		velocity = global_position.direction_to(target) * speed
 		if global_position.distance_to(target) > 0:

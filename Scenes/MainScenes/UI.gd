@@ -17,7 +17,7 @@ func _ready():
 	GameData.connect('gold_updated', self, 'update_ui_gold')
 		
 # TODO: these could probably use signals for a bit of performance savings
-func _process(delta):
+func _process(_delta):
 	update_ui_wave_info()
 	update_ui_bars()
 
