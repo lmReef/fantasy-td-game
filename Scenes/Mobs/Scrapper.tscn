@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Mobs/Scrapper.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Shaders/WhiteHit.tres" type="Material" id=2]
+[ext_resource path="res://Assets/Mobs/enemy1-run.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/UI/MobHealthBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/Animations/MobHit.tres" type="Animation" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.5, 17.5 )
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("KinematicBody2D/Sprite:material:shader_param/hit_opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "move"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 11.5, 20 )
+
+[node name="Scrapper" type="PathFollow2D"]
+rotate = false
+loop = false
+script = ExtResource( 1 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+material = ExtResource( 2 )
+position = Vector2( 15, -7 )
+texture = ExtResource( 3 )
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+visible = false
+position = Vector2( 0.5, -0.5 )
+shape = SubResource( 1 )
+
+[node name="HealthBar" parent="." instance=ExtResource( 4 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "move"
+anims/RESET = SubResource( 11 )
+anims/hit = ExtResource( 5 )
+anims/move = SubResource( 12 )
+
+[node name="HoverDetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverDetect"]
+position = Vector2( 0.5, -1 )
+shape = SubResource( 13 )
+
+[connection signal="mouse_entered" from="KinematicBody2D" to="." method="_on_KinematicBody2D_mouse_entered"]
+[connection signal="mouse_exited" from="KinematicBody2D" to="." method="_on_KinematicBody2D_mouse_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="mouse_entered" from="HoverDetect" to="." method="_on_HoverDetect_mouse_entered"]
+[connection signal="mouse_exited" from="HoverDetect" to="." method="_on_HoverDetect_mouse_exited"]
