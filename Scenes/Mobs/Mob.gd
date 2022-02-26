@@ -45,8 +45,8 @@ func flip_sprite():
 	#	$KinematicBody2D/Sprite.set_flip_h(true)
 	pass
 
-func on_hit(damage):
-	health -= damage
+func on_hit(hit_damage):
+	health -= hit_damage
 	$AnimationPlayer.play('hit')
 	$HealthBar.value = health
 	if health <= 0 and not dead:
@@ -63,7 +63,7 @@ func on_dead():
 	yield(get_tree().create_timer(0.2), "timeout")
 	self.queue_free()
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	$AnimationPlayer.play('move')
 
 # change cursor on hover

@@ -18,5 +18,6 @@ func filter_wave_available(wave):
 	
 	return filtered_mobs
 	
-func filter_cost(cost):
+func filter_cost(_cost):
+	# TODO: func to filter by min cost
 	pass

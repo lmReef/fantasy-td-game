@@ -14,7 +14,7 @@ region = Rect2( 582, 6, 46, 46 )
 size = 12
 font_data = ExtResource( 5 )
 
-[node name="Tooltip" type="Control"]
+[node name="Tooltip" type="Control" groups=["Tooltip"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1920.0

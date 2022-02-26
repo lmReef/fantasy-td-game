@@ -18,5 +18,5 @@ func _draw():
 		#for i in range(int(size.y / 64) - 1, int(size.y / 64) + 1):
 		#	draw_line(Vector2(size.x + 100, i * 64), Vector2(size.x - 100, i * 64), "000000")
 
-func _process(delta):
+func _process(_delta):
 	update()
