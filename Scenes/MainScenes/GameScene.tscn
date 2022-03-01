@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scenes/Levels/Map2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Heroes/PrototypeHero.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/UI/HotbarSlot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/UI/TowerInv.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Tilesets/UI-elements-32x32-original.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Fonts/ManaSpace_10.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Scenes/MainScenes/Grid.gd" type="Script" id=8]
@@ -510,6 +511,12 @@ anchor_bottom = 0.0
 margin_top = 68.0
 margin_right = 64.0
 margin_bottom = 132.0
+
+[node name="TowerInv" parent="UI/HUD" instance=ExtResource( 4 )]
+margin_left = 1385.0
+margin_top = 867.0
+margin_right = -353.0
+margin_bottom = 0.0
 
 [node name="WaveInfo" type="NinePatchRect" parent="UI/HUD"]
 anchor_left = 0.5

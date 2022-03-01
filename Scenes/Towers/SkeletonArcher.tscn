@@ -155,14 +155,15 @@ shape = SubResource( 4 )
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 64, 27 )
 
-[node name="HoverDetect" type="Area2D" parent="."]
+[node name="TowerSelect" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverDetect"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TowerSelect"]
 position = Vector2( 37, 37.5 )
 shape = SubResource( 5 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]
-[connection signal="mouse_entered" from="HoverDetect" to="." method="_on_HoverDetect_mouse_entered"]
-[connection signal="mouse_exited" from="HoverDetect" to="." method="_on_HoverDetect_mouse_exited"]
+[connection signal="input_event" from="TowerSelect" to="." method="_on_TowerSelect_input_event"]
+[connection signal="mouse_entered" from="TowerSelect" to="." method="_on_HoverDetect_mouse_entered"]
+[connection signal="mouse_exited" from="TowerSelect" to="." method="_on_HoverDetect_mouse_exited"]

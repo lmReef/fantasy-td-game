@@ -5,23 +5,24 @@ var Projectile = load('res://Scenes/Projectile.tscn')
 var base_stats = {
 	'tower_range': 0, 
 	'damage': 0, 
-	'attack_speed': 0, 
+	'attack_speed': 0, # attacks per second
 	'attack_type': 'Projectile', 
 	'cost': 9999
 }
 
-var flat_bonuses = {
-	'tower_range': 0, 
-	'damage': 0, 
-	'attack_speed': 0, 
-	'cost': 0
-}
-
-var multiplier_bonuses = {
-	'tower_range': 0, 
-	'damage': 0, 
-	'attack_speed': 0, 
-	'cost': 0
+var item_bonuses = {
+	'flat_stats': {
+		'tower_range': 0,
+		'damage': 0,
+		'attack_speed': 0,
+		'cost': 0
+	},
+	'stat_multiplier': {
+		'tower_range': 1,
+		'damage': 1,
+		'attack_speed': 1,
+		'cost': 1
+	}
 }
 
 var stats = {
@@ -42,8 +43,8 @@ var mobs = []
 var target
 var ready = true
 
-func _init(_stats).():
-	base_stats = _stats
+func _init(_base_stats).():
+	base_stats = _base_stats
 	stats = base_stats
 
 func _ready():
@@ -59,6 +60,27 @@ func _physics_process(_delta):
 			attack()
 	else:
 		target = null
+		
+func add_item(item):
+	items.append(item)
+	
+	# add stats to item bonuses
+	var item_info = ItemData.get_item_info(item)
+	for key in item_info.effects.attributes:
+		var value = item_info.effects.attributes[key]
+		item_bonuses[item_info.effects.type][key] += value
+	apply_item_bonuses_to_base_stats()
+
+func apply_item_bonuses_to_base_stats():
+	# start with the base stats
+	stats = base_stats.duplicate()
+	
+	# apply the flat bonuses
+	for key in item_bonuses.flat_stats:
+		stats[key] += item_bonuses.flat_stats[key]
+	# apply the multiplier bonuses
+	for key in item_bonuses.stat_multiplier:
+		stats[key] = stats[key] * item_bonuses.stat_multiplier[key]
 
 func target_mob():
 	var mob_progress = []
@@ -76,12 +98,14 @@ func turn():
 func attack():
 	ready = false
 	if $AnimationPlayer:
+		$AnimationPlayer.playback_speed = 1 * stats.attack_speed
 		$AnimationPlayer.play('attack')
 		var proj = Projectile.instance()
 		proj.setup(target.global_position)
 		get_parent().add_child(proj)
 	target.on_hit(stats.damage)
-	yield(get_tree().create_timer(stats.attack_speed), "timeout")
+	var timer_speed = 1 / stats.attack_speed # 1 / attacks per second
+	yield(get_tree().create_timer(timer_speed), "timeout")
 	ready = true
 	
 func attack_with_projectile(_texture):
@@ -96,8 +120,10 @@ func _on_Range_body_entered(body):
 func _on_Range_body_exited(body):
 	mobs.erase(body.get_parent())
 	
-func _on_AnimationPlayer_animation_finished(_anim_name):
-	$AnimationPlayer.play('idle')
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == 'attack':
+		$AnimationPlayer.playback_speed = 1
+		$AnimationPlayer.play('idle')
 
 # change cursor on hover
 func _on_HoverDetect_mouse_entered():
@@ -105,3 +131,8 @@ func _on_HoverDetect_mouse_entered():
 
 func _on_HoverDetect_mouse_exited():
 	CursorScript.set_cursor('default')
+	
+func _on_TowerSelect_input_event(viewport, event, shape_idx):
+	if (event is InputEventMouseButton && event.pressed):
+		get_tree().get_nodes_in_group('tower_inv')[0].set_items(items, self)
+
