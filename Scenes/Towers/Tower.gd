@@ -81,6 +81,17 @@ func apply_item_bonuses_to_base_stats():
 	# apply the multiplier bonuses
 	for key in item_bonuses.stat_multiplier:
 		stats[key] = stats[key] * item_bonuses.stat_multiplier[key]
+		
+# returns only the items calculated damage
+func get_total_item_bonuses():
+	var item_stats = stats.duplicate()
+	
+	for key in item_stats:
+		if key != 'attack_type':
+			item_stats[key] -= base_stats[key]
+		
+	print(item_stats)
+	return item_stats
 
 func target_mob():
 	var mob_progress = []
@@ -132,7 +143,9 @@ func _on_HoverDetect_mouse_entered():
 func _on_HoverDetect_mouse_exited():
 	CursorScript.set_cursor('default')
 	
+# on tower clicked
 func _on_TowerSelect_input_event(viewport, event, shape_idx):
 	if (event is InputEventMouseButton && event.pressed):
 		get_tree().get_nodes_in_group('tower_inv')[0].set_items(items, self)
+		get_tree().get_nodes_in_group('tower_stats')[0].update_stats(stats, get_total_item_bonuses(), self)
 

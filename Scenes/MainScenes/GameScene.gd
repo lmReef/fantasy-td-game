@@ -49,6 +49,11 @@ func _unhandled_input(event):
 	elif event.is_action_released('hotbar_6'):
 		initiate_build_mode(get_tree().get_nodes_in_group('build_buttons')[5])
 		
+	# hide tower info panels
+	if event.is_action_released('ui_cancel'):
+		get_tree().get_nodes_in_group('tower_inv')[0].hide_panel()
+		get_tree().get_nodes_in_group('tower_stats')[0].hide_panel()
+		
 #
 # wave functions
 #

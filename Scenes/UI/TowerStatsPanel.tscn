@@ -1,0 +1,247 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Resources/Fonts/ManaSpace_12.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/Fonts/ManaSpace_16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/UI/Animated Book/1.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/UI/TowerStatsPanel.gd" type="Script" id=4]
+[ext_resource path="res://Resources/Tilesets/UI-elements-64x64.png" type="Texture" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 5 )
+region = Rect2( 6, 262, 52, 52 )
+
+[node name="TowerStatsPanel" type="NinePatchRect" groups=["tower_stats"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1570.0
+margin_bottom = -867.0
+texture = SubResource( 1 )
+patch_margin_left = 21
+patch_margin_top = 21
+patch_margin_right = 21
+patch_margin_bottom = 21
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Col" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 20.0
+margin_right = -24.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Col"]
+margin_right = 302.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 2 )
+text = "Tower's Stats"
+align = 1
+
+[node name="Stats" type="VBoxContainer" parent="Col"]
+margin_top = 20.0
+margin_right = 302.0
+margin_bottom = 177.0
+size_flags_vertical = 3
+
+[node name="Control3" type="Control" parent="Col/Stats"]
+margin_right = 302.0
+margin_bottom = 17.0
+size_flags_vertical = 3
+
+[node name="Damage" type="HBoxContainer" parent="Col/Stats"]
+margin_top = 21.0
+margin_right = 302.0
+margin_bottom = 33.0
+
+[node name="Label" type="Label" parent="Col/Stats/Damage"]
+margin_right = 56.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "Damage:"
+
+[node name="Total" type="Label" parent="Col/Stats/Damage"]
+margin_left = 60.0
+margin_right = 100.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "total"
+
+[node name="Items" type="Label" parent="Col/Stats/Damage"]
+margin_left = 104.0
+margin_right = 168.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0.823529, 1, 0.568627, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "(+items)"
+
+[node name="Skills" type="Label" parent="Col/Stats/Damage"]
+margin_left = 172.0
+margin_right = 244.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0.623529, 0.886275, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "(+skills)"
+
+[node name="AttackSpeed" type="HBoxContainer" parent="Col/Stats"]
+margin_top = 37.0
+margin_right = 302.0
+margin_bottom = 49.0
+
+[node name="Label" type="Label" parent="Col/Stats/AttackSpeed"]
+margin_right = 104.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "Attack Speed:"
+
+[node name="Total" type="Label" parent="Col/Stats/AttackSpeed"]
+margin_left = 108.0
+margin_right = 148.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "total"
+
+[node name="Items" type="Label" parent="Col/Stats/AttackSpeed"]
+margin_left = 152.0
+margin_right = 216.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0.823529, 1, 0.568627, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "(+items)"
+
+[node name="Skills" type="Label" parent="Col/Stats/AttackSpeed"]
+margin_left = 220.0
+margin_right = 292.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0.623529, 0.886275, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "(+skills)"
+
+[node name="Range" type="HBoxContainer" parent="Col/Stats"]
+margin_top = 53.0
+margin_right = 302.0
+margin_bottom = 65.0
+
+[node name="Label" type="Label" parent="Col/Stats/Range"]
+margin_right = 48.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "Range:"
+
+[node name="Total" type="Label" parent="Col/Stats/Range"]
+margin_left = 52.0
+margin_right = 92.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "total"
+
+[node name="Items" type="Label" parent="Col/Stats/Range"]
+margin_left = 96.0
+margin_right = 160.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0.823529, 1, 0.568627, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "(+items)"
+
+[node name="Skills" type="Label" parent="Col/Stats/Range"]
+margin_left = 164.0
+margin_right = 236.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0.623529, 0.886275, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "(+skills)"
+
+[node name="Damage4" type="HBoxContainer" parent="Col/Stats"]
+margin_top = 69.0
+margin_right = 302.0
+margin_bottom = 81.0
+
+[node name="Label" type="Label" parent="Col/Stats/Damage4"]
+margin_right = 184.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "Attack Type: Projectile"
+
+[node name="Control" type="Control" parent="Col/Stats"]
+margin_top = 85.0
+margin_right = 302.0
+margin_bottom = 103.0
+size_flags_vertical = 3
+
+[node name="DamageDone" type="Label" parent="Col/Stats"]
+margin_top = 107.0
+margin_right = 302.0
+margin_bottom = 119.0
+custom_fonts/font = ExtResource( 1 )
+text = "Damage: 0"
+
+[node name="Kills" type="Label" parent="Col/Stats"]
+margin_top = 123.0
+margin_right = 302.0
+margin_bottom = 135.0
+custom_fonts/font = ExtResource( 1 )
+text = "Kills: 0"
+
+[node name="Control2" type="Control" parent="Col/Stats"]
+margin_top = 139.0
+margin_right = 302.0
+margin_bottom = 157.0
+size_flags_vertical = 3
+
+[node name="Binders" type="VBoxContainer" parent="."]
+margin_left = 332.0
+margin_right = 364.0
+margin_bottom = 213.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="Binders"]
+margin_right = 32.0
+margin_bottom = 23.0
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Binders"]
+margin_top = 27.0
+margin_right = 32.0
+margin_bottom = 59.0
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="Spacer2" type="Control" parent="Binders"]
+margin_top = 63.0
+margin_right = 32.0
+margin_bottom = 86.0
+size_flags_vertical = 3
+
+[node name="TextureRect2" type="TextureRect" parent="Binders"]
+margin_top = 90.0
+margin_right = 32.0
+margin_bottom = 122.0
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="Spacer3" type="Control" parent="Binders"]
+margin_top = 126.0
+margin_right = 32.0
+margin_bottom = 149.0
+size_flags_vertical = 3
+
+[node name="TextureRect3" type="TextureRect" parent="Binders"]
+margin_top = 153.0
+margin_right = 32.0
+margin_bottom = 185.0
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="Spacer4" type="Control" parent="Binders"]
+margin_top = 189.0
+margin_right = 32.0
+margin_bottom = 213.0
+size_flags_vertical = 3

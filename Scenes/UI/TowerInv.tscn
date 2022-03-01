@@ -18,7 +18,7 @@ region = Rect2( 326, 518, 52, 52 )
 [node name="TowerInv" type="NinePatchRect" groups=["tower_inv"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1738.0
+margin_right = -1620.0
 margin_bottom = -867.0
 texture = SubResource( 1 )
 patch_margin_left = 21
@@ -34,15 +34,15 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
-margin_top = 10.0
+margin_top = 20.0
 margin_right = -8.0
 margin_bottom = -16.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Col"]
-margin_right = 166.0
+[node name="Title" type="Label" parent="Col"]
+margin_right = 284.0
 margin_bottom = 16.0
 custom_fonts/font = ExtResource( 1 )
 text = "Tower's Items"
@@ -50,8 +50,8 @@ align = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Col"]
 margin_top = 20.0
-margin_right = 166.0
-margin_bottom = 187.0
+margin_right = 284.0
+margin_bottom = 177.0
 size_flags_vertical = 3
 texture = SubResource( 2 )
 patch_margin_left = 21
@@ -70,11 +70,11 @@ __meta__ = {
 }
 
 [node name="TowerInvGrid" type="GridContainer" parent="Col/NinePatchRect/ScrollContainer"]
-margin_right = 166.0
-margin_bottom = 165.0
+margin_right = 284.0
+margin_bottom = 155.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 2
+columns = 4
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -83,10 +83,10 @@ __meta__ = {
 [node name="Item" parent="Col/NinePatchRect/ScrollContainer/TowerInvGrid" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 83.0
+margin_right = 71.0
 margin_bottom = 64.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Binders" type="VBoxContainer" parent="."]
 margin_left = -16.0
 margin_right = 16.0
 margin_bottom = 213.0
@@ -95,45 +95,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Control" parent="VBoxContainer"]
+[node name="Spacer" type="Control" parent="Binders"]
 margin_right = 32.0
 margin_bottom = 23.0
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Binders"]
 margin_top = 27.0
 margin_right = 32.0
 margin_bottom = 59.0
 texture = ExtResource( 4 )
 stretch_mode = 6
 
-[node name="Spacer2" type="Control" parent="VBoxContainer"]
+[node name="Spacer2" type="Control" parent="Binders"]
 margin_top = 63.0
 margin_right = 32.0
 margin_bottom = 86.0
 size_flags_vertical = 3
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="Binders"]
 margin_top = 90.0
 margin_right = 32.0
 margin_bottom = 122.0
 texture = ExtResource( 4 )
 stretch_mode = 6
 
-[node name="Spacer3" type="Control" parent="VBoxContainer"]
+[node name="Spacer3" type="Control" parent="Binders"]
 margin_top = 126.0
 margin_right = 32.0
 margin_bottom = 149.0
 size_flags_vertical = 3
 
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="Binders"]
 margin_top = 153.0
 margin_right = 32.0
 margin_bottom = 185.0
 texture = ExtResource( 4 )
 stretch_mode = 6
 
-[node name="Spacer4" type="Control" parent="VBoxContainer"]
+[node name="Spacer4" type="Control" parent="Binders"]
 margin_top = 189.0
 margin_right = 32.0
 margin_bottom = 213.0
