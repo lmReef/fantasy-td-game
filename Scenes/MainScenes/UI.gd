@@ -17,7 +17,7 @@ func _ready():
 	GameData.connect('level_up', self, 'update_ui_level')
 	GameData.connect('gold_updated', self, 'update_ui_gold')
 	
-	$HUD/Dashboard/Row/PlayerPortrait.add_child(hero_portrait)
+	$HUD/Dashboard/Row/PlayerPortrait/Hero.add_child(hero_portrait)
 		
 # TODO: these could probably use signals for a bit of performance savings
 func _process(_delta):
