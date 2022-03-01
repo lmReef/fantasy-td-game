@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 onready var hotbar_towers = GameData.hotbar_towers
+onready var hero_portrait = load('res://Scenes/Heroes/' + GameData.hero + '.tscn').instance()
 
 func _ready():
 	# set the hotbar slot types; 'Slot1': 'Missle'
@@ -15,6 +16,8 @@ func _ready():
 	WaveData.connect('wave_over', self, 'move_button_up')
 	GameData.connect('level_up', self, 'update_ui_level')
 	GameData.connect('gold_updated', self, 'update_ui_gold')
+	
+	$HUD/Dashboard/Row/PlayerPortrait.add_child(hero_portrait)
 		
 # TODO: these could probably use signals for a bit of performance savings
 func _process(_delta):

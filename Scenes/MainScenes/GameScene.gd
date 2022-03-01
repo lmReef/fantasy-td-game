@@ -53,7 +53,7 @@ func _unhandled_input(event):
 	if event.is_action_released('ui_cancel'):
 		get_tree().get_nodes_in_group('tower_inv')[0].hide_panel()
 		get_tree().get_nodes_in_group('tower_stats')[0].hide_panel()
-		
+
 #
 # wave functions
 #

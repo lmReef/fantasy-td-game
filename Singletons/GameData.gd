@@ -1,6 +1,6 @@
 extends Node
 
-var champion_name = 'Necromancer'
+var hero = 'Necromancer'
 
 var level = 1
 var experience = 0
@@ -12,6 +12,8 @@ var gold = 50
 
 signal level_up
 signal gold_updated
+signal health_lost
+signal dead
 
 var hotbar_towers = {
 	'Slot1': {
@@ -65,3 +67,9 @@ func update_gold(amount):
 	gold += amount
 	emit_signal('gold_updated')
 
+func take_damage(amount):
+	health -= amount
+	if health <= 0:
+		emit_signal("dead")
+	else:
+		emit_signal("health_lost")

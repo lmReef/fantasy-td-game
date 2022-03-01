@@ -26,7 +26,8 @@ func _ready():
 func _process(delta):
 	move(delta)
 	if unit_offset == 1.0:
-		GameData.health -= damage
+		GameData.take_damage(damage)
+		WaveData.mob_died()
 		queue_free()
 	#flip_sprite()
 	
