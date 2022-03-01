@@ -5,6 +5,7 @@ var movespeed
 var experience
 var damage
 var gold
+var drop_chances = 1
 
 var dead = false
 
@@ -14,6 +15,7 @@ func _init(stats).():
 	experience = stats.experience
 	damage = stats.damage
 	gold = stats.gold
+	drop_chances = stats.drop_chances
 	
 func _ready():
 	apply_difficulty_scaling()
@@ -59,8 +61,11 @@ func on_dead():
 	GameData.award_experience(experience)
 	GameData.update_gold(gold)
 	WaveData.mob_died()
-	#$KinematicBody2D.queue_free()
-	#$HealthBar.queue_free()
+	var drop = ItemData.get_drop(1)
+	if drop:
+		get_parent().add_child(drop)
+		drop.rect_position = global_position + Vector2(0, -25) + Vector2(rand_range(-20, 20), rand_range(-20, 20))
+	
 	yield(get_tree().create_timer(0.2), "timeout")
 	self.queue_free()
 

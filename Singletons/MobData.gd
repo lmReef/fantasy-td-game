@@ -5,9 +5,6 @@ var mobs = {
 	'Fighter': load('res://Scenes/Mobs/Fighter.tscn').instance().stats,
 }
 
-#func _ready():
-	#print(filter_wave_available(30))
-
 func filter_wave_available(wave):
 	var filtered_mobs = []
 	

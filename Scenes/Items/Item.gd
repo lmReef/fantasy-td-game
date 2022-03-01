@@ -1,6 +1,8 @@
 extends TextureRect
 
 var info
+var dragable = false # TODO: make items only dragable sometimes
+# TODO: maybe make a seperate 'drop' scene in place of items on the ground
 	
 func set_info(_info):
 	info = _info
@@ -14,6 +16,7 @@ func get_drag_data(position):
 	var data = {}
 	#data['item_name'] = info.name
 	data['item_name'] = 'Dirk'
+	data['origin_reference'] = self
 	
 	var preview = self.duplicate()
 	var control = Control.new()

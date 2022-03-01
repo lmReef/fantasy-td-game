@@ -8,6 +8,7 @@ var stats = {
 	'gold': 1,
 	'cost': 10,
 	'wave_available': 0,
+	'drop_chances': 1
 }
 
 func _init().(stats):
