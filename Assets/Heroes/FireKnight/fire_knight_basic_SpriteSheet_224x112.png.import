@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SeekerTower.png-c593a4e7992330fe415c9155eab95dba.stex"
+path="res://.import/fire_knight_basic_SpriteSheet_224x112.png-00f08b8a281e0e645c067813c61dd745.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/Skills/SeekerTower.png"
-dest_files=[ "res://.import/SeekerTower.png-c593a4e7992330fe415c9155eab95dba.stex" ]
+source_file="res://Assets/Heroes/FireKnight/fire_knight_basic_SpriteSheet_224x112.png"
+dest_files=[ "res://.import/fire_knight_basic_SpriteSheet_224x112.png-00f08b8a281e0e645c067813c61dd745.stex" ]
 
 [params]
 

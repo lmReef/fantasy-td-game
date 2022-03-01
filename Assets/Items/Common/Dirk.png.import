@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/NovaTower.png-ea50ee0ea29efb4e3f8b8d1f03616873.stex"
+path="res://.import/Dirk.png-1dc816febc1d43f936a2884edc543e57.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/Skills/NovaTower.png"
-dest_files=[ "res://.import/NovaTower.png-ea50ee0ea29efb4e3f8b8d1f03616873.stex" ]
+source_file="res://Assets/Items/Common/Dirk.png"
+dest_files=[ "res://.import/Dirk.png-1dc816febc1d43f936a2884edc543e57.stex" ]
 
 [params]
 

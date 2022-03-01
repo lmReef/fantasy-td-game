@@ -20,6 +20,7 @@ GameData="*res://Singletons/GameData.gd"
 CursorScript="*res://Singletons/CursorScript.gd"
 WaveData="*res://Singletons/WaveData.gd"
 MobData="*res://Singletons/MobData.gd"
+ItemData="*res://Singletons/ItemData.gd"
 
 [debug]
 

@@ -2,6 +2,28 @@ extends Node2D
 
 var Projectile = load('res://Scenes/Projectile.tscn')
 
+var base_stats = {
+	'tower_range': 0, 
+	'damage': 0, 
+	'attack_speed': 0, 
+	'attack_type': 'Projectile', 
+	'cost': 9999
+}
+
+var flat_bonuses = {
+	'tower_range': 0, 
+	'damage': 0, 
+	'attack_speed': 0, 
+	'cost': 0
+}
+
+var multiplier_bonuses = {
+	'tower_range': 0, 
+	'damage': 0, 
+	'attack_speed': 0, 
+	'cost': 0
+}
+
 var stats = {
 	'tower_range': 0, 
 	'damage': 0, 
@@ -9,6 +31,8 @@ var stats = {
 	'attack_type': 'Projectile', 
 	'cost': 9999
 }
+
+var items = []
 
 var level = 0
 var tier = 1
@@ -19,7 +43,8 @@ var target
 var ready = true
 
 func _init(_stats).():
-	stats = _stats
+	base_stats = _stats
+	stats = base_stats
 
 func _ready():
 	# set the range of the towers area2d

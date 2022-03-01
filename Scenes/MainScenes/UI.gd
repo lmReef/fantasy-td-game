@@ -68,7 +68,7 @@ func update_ui_level():
 	$HUD/Dashboard/Row/PlayerPortrait/LevelIcon/Level.text = String(GameData.level)
 
 func update_ui_gold():
-	$HUD/Dashboard/Row/Inventory/Col/NinePatchRect/Row/Gold.text = String(GameData.gold)
+	$HUD/Dashboard/Row/Inventory/Col/GoldGroup/Row/Gold.text = String(GameData.gold)
 	for i in get_tree().get_nodes_in_group('build_buttons'):
 		if GameData.gold < i.stats.cost:
 			i.modulate = Color('938383')
