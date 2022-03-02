@@ -57,14 +57,13 @@ func on_hit(hit_damage):
 		on_dead()
 
 func on_dead():
-	# award $$$
 	GameData.award_experience(experience)
 	GameData.update_gold(gold)
 	WaveData.mob_died()
 	var drop = ItemData.get_drop(1)
 	if drop:
 		get_parent().add_child(drop)
-		drop.rect_position = global_position + Vector2(0, -25) + Vector2(rand_range(-20, 20), rand_range(-20, 20))
+		drop.position = global_position + Vector2(0, -25) + Vector2(rand_range(-20, 20), rand_range(-20, 20))
 	
 	yield(get_tree().create_timer(0.2), "timeout")
 	self.queue_free()

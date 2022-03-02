@@ -47,4 +47,4 @@ func calculate_difficulty():
 
 func calculate_budget():
 	budget = BASE_BUDGET * (difficulty * 0.65)
-	print('Budget: ' + String(budget))
+	#print('Budget: ' + String(budget))

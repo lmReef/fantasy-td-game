@@ -13,7 +13,20 @@ var items = {
 				'attack_speed': 0.15,
 			}
 		}
-	}
+	},
+	'Axe': {
+		'name': 'Axe',
+		'description': "A woodsman's axe. Looks heavy.",
+		'rarity': 'common',
+		'icon_path': 'res://Assets/Items/Common/Axe.png',
+		'effects': {
+			'description': 'Damage +3',
+			'type': 'flat_stats',
+			'attributes': {
+				'damage': 3,
+			}
+		}
+	},
 }
 
 var common_items = []
@@ -38,18 +51,25 @@ func get_drop(chances):
 		if roll < roll_chance: roll = roll_chance
 	
 	if roll > 0:
-		return get_item_scene(items[common_items[rng.randi_range(0, common_items.size()-1)]].name)
+		return get_item_drop(items[common_items[rng.randi_range(0, common_items.size()-1)]].name)
 	elif roll > 99:
-		return get_item_scene(items[legendary_items[rng.randi_range(0, legendary_items.size()-1)]].name)
+		return get_item_drop(items[legendary_items[rng.randi_range(0, legendary_items.size()-1)]].name)
 	elif roll > 95:
-		return get_item_scene(items[rare_items[rng.randi_range(0, rare_items.size()-1)]].name)
+		return get_item_drop(items[rare_items[rng.randi_range(0, rare_items.size()-1)]].name)
 	elif roll > 80:
-		return get_item_scene(items[common_items[rng.randi_range(0, common_items.size()-1)]].name)
-	elif roll < 0:
-		return get_item_scene(items[cursed_items[rng.randi_range(0, cursed_items.size()-1)]].name)
+		return get_item_drop(items[common_items[rng.randi_range(0, common_items.size()-1)]].name)
+	elif roll < -10:
+		return get_item_drop(items[cursed_items[rng.randi_range(0, cursed_items.size()-1)]].name)
 	
 func get_item_info(item):
 	return items[item]
+	
+func get_item_drop(item):
+	if item:
+		var item_scene = load('res://Scenes/Items/ItemDrop.tscn').instance()
+		item_scene.set_info(get_item_info(item))
+		return item_scene
+	else: return null
 
 func get_item_scene(item):
 	if item:

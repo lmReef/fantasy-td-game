@@ -90,7 +90,6 @@ func get_total_item_bonuses():
 		if key != 'attack_type':
 			item_stats[key] -= base_stats[key]
 		
-	print(item_stats)
 	return item_stats
 
 func target_mob():

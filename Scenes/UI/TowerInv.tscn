@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Resources/Fonts/ManaSpace_16.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Scenes/Items/Item.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Tilesets/UI-elements-64x64.png" type="Texture" id=3]
 [ext_resource path="res://Assets/UI/Animated Book/1.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/UI/TowerInv.gd" type="Script" id=5]
@@ -79,12 +78,6 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Item" parent="Col/NinePatchRect/ScrollContainer/TowerInvGrid" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 71.0
-margin_bottom = 64.0
 
 [node name="Binders" type="VBoxContainer" parent="."]
 margin_left = -16.0
