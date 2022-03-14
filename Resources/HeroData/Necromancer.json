@@ -1,0 +1,30 @@
+{
+  "hero_name": "Necromancer",
+
+  "hero_skills": {
+    "Path1": {},
+    "Path2": {},
+    "Path3": {}
+  },
+
+  "hero_towers": {
+    "Slot1": {
+      "name": "SkeletonArcher"
+    },
+    "Slot2": {
+      "name": "SkeletonWarrior"
+    },
+    "Slot3": {
+      "name": "SkeletonArcher"
+    },
+    "Slot4": {
+      "name": "SkeletonArcher"
+    },
+    "Slot5": {
+      "name": "SkeletonArcher"
+    },
+    "Slot6": {
+      "name": "SkeletonArcher"
+    }
+  }
+}

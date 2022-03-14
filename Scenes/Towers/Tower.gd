@@ -48,9 +48,10 @@ func _init(_base_stats).():
 	stats = base_stats
 
 func _ready():
+	add_to_group('cursor_green')
 	# set the range of the towers area2d
 	$Range/Radius.shape.radius = stats.tower_range / 2 # sets radius not diameter
-	add_to_group('cursor_green')
+	update_range()
 
 func _physics_process(_delta):
 	if mobs.size() != 0 and built:
@@ -123,28 +124,34 @@ func attack_with_projectile(_texture):
 	proj.setup(target.global_position)
 	attack()
 	
+func update_range():
+	var scaling = stats.tower_range / 600.0
+	$Range/Preview.scale = Vector2(scaling, scaling)
+	
 
 func _on_Range_body_entered(body):
 	mobs.append(body.get_parent())
 
 func _on_Range_body_exited(body):
 	mobs.erase(body.get_parent())
-	
+
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == 'attack':
+	if 'attack' in anim_name:
 		$AnimationPlayer.playback_speed = 1
 		$AnimationPlayer.play('idle')
 
 # change cursor on hover
-func _on_HoverDetect_mouse_entered():
+func _on_TowerSelect_mouse_entered():
 	CursorScript.set_cursor('green')
 
-func _on_HoverDetect_mouse_exited():
+func _on_TowerSelect_mouse_exited():
 	CursorScript.set_cursor('default')
-	
+
 # on tower clicked
 func _on_TowerSelect_input_event(viewport, event, shape_idx):
 	if (event is InputEventMouseButton && event.pressed):
-		get_tree().get_nodes_in_group('tower_inv')[0].set_items(items, self)
-		get_tree().get_nodes_in_group('tower_stats')[0].update_stats(stats, get_total_item_bonuses(), self)
+		GameData.new_tower_selected(self)
+		
+		update_range()
+		$Range.visible = true
 

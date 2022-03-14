@@ -1,15 +1,16 @@
 extends NinePatchRect
 
-var tower_instance
-
 func _ready():
 	visible = false
+	
+	GameData.connect("new_tower_selected", self, "update_stats")
 
-func update_stats(total_stats, item_stats, _tower_instance):
-	if _tower_instance.get_name() != 'DragTower':
-		tower_instance = _tower_instance
+func update_stats():
+	if GameData.selected_tower.get_name() != 'DragTower':
+		var total_stats = GameData.selected_tower.stats
+		var item_stats = GameData.selected_tower.get_total_item_bonuses()
 		
-		$Col/Title.text = tower_instance.get_name().capitalize()
+		$Col/Title.text = GameData.selected_tower.get_name().capitalize()
 		
 		$Col/Stats/Damage/Total.text = String(total_stats.damage)
 		$Col/Stats/Damage/Items.text = '(+' + String(item_stats.damage) + ')'
@@ -26,5 +27,4 @@ func update_stats(total_stats, item_stats, _tower_instance):
 		visible = true
 
 func hide_panel():
-	tower_instance = null
 	visible = false

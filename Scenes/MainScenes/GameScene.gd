@@ -27,16 +27,21 @@ func _process(_delta):
 	$UI/Label.text = 'Difficulty: ' + String(WaveData.difficulty)
 	if build_mode:
 		update_tower_preview()
-	
+
 func _unhandled_input(event):
-	if event.is_action_released("ui_cancel") and build_mode:
-		cancel_build_mode()
+	if event.is_action_released("ui_cancel"):
+		if build_mode:
+			cancel_build_mode()
+		# hide tower info panels
+		if GameData.selected_tower != null:
+			GameData.tower_unselected()
+			
 	elif event.is_action_released("ui_accept") and build_mode and build_valid:
 		verify_and_build()
 		cancel_build_mode()
 		
 	# hotbar controls
-	if event.is_action_released('hotbar_1'):
+	elif event.is_action_released('hotbar_1'):
 		initiate_build_mode(get_tree().get_nodes_in_group('build_buttons')[0])
 	elif event.is_action_released('hotbar_2'):
 		initiate_build_mode(get_tree().get_nodes_in_group('build_buttons')[1])
@@ -49,10 +54,7 @@ func _unhandled_input(event):
 	elif event.is_action_released('hotbar_6'):
 		initiate_build_mode(get_tree().get_nodes_in_group('build_buttons')[5])
 		
-	# hide tower info panels
-	if event.is_action_released('ui_cancel'):
-		get_tree().get_nodes_in_group('tower_inv')[0].hide_panel()
-		get_tree().get_nodes_in_group('tower_stats')[0].hide_panel()
+	
 
 #
 # wave functions
@@ -60,7 +62,6 @@ func _unhandled_input(event):
 
 func start_next_wave():
 	WaveData.current_wave += 1
-	#var wave_data = WaveData.waves[WaveData.current_wave]
 	var wave_data = WaveData.generate_wave()
 	yield(get_tree().create_timer(0.2), "timeout") # padding between waves, 'build time'
 	spawn_mobs(wave_data)
@@ -78,7 +79,7 @@ func spawn_mobs(wave_data):
 #
 
 func initiate_build_mode(tower):
-	var temp_tower = load('res://Scenes/Towers/' + tower.type + '.tscn').instance()
+	var temp_tower = load('res://Scenes/Towers/' + GameData.hero_name + '/' + tower.type + '.tscn').instance()
 	var stats = temp_tower.stats
 	temp_tower.queue_free()
 
@@ -119,7 +120,7 @@ func verify_and_build():
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		$Grid.on = false
 		# check to see if enough $
-		var new_tower = load('res://Scenes/Towers/' + build_type + '.tscn').instance()
+		var new_tower = load('res://Scenes/Towers/' + GameData.hero_name + '/' + build_type + '.tscn').instance()
 		new_tower.position = build_location
 		new_tower.built = true
 		map_node.get_node('YSort/Towers').add_child(new_tower, true)
@@ -133,7 +134,4 @@ func verify_and_build():
 
 func _on_wave_over():
 	pass
-
-
-
-
+	

@@ -2,8 +2,10 @@ extends 'res://Scenes/Towers/Tower.gd'
 
 var projectile_texture = 'res://Assets/Projectiles/arrow_1_origin.png'
 
+var tower_name = 'Skeleton Archer'
+
 var _stats = {
-	'tower_range': 350, 
+	'tower_range': 380, 
 	'damage': 12, 
 	'attack_speed': 1, 
 	'attack_type': 'Projectile', 

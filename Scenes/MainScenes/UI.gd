@@ -1,31 +1,29 @@
 extends CanvasLayer
 
-onready var hotbar_towers = GameData.hotbar_towers
-onready var hero_portrait = load('res://Scenes/Heroes/' + GameData.hero + '.tscn').instance()
-
 func _ready():
 	# set the hotbar slot types; 'Slot1': 'Missle'
 	for i in get_tree().get_nodes_in_group('build_buttons'):
-		if hotbar_towers[i.get_name()]: 
-			var temp = load('res://Scenes/Towers/' + hotbar_towers[i.get_name()].name + '.tscn').instance()
-			i.set_icon(hotbar_towers[i.get_name()].icon_location)
-			i.type = hotbar_towers[i.get_name()].name
+		if GameData.hero_towers[i.get_name()]: 
+			var temp = load('res://Scenes/Towers/' + GameData.hero_name + '/' + GameData.hero_towers[i.get_name()].name + '.tscn').instance()
+			i.type = GameData.hero_towers[i.get_name()].name
+			i.set_icon('res://Assets/Towers/' + GameData.hero_name + '/' + i.type + '/icon.png')
 			i.stats = temp.stats
-			temp.queue_free()
-			
+			temp.queue_free()	
+	
 	WaveData.connect('wave_over', self, 'move_button_up')
 	GameData.connect('level_up', self, 'update_ui_level')
 	GameData.connect('gold_updated', self, 'update_ui_gold')
 	
+	var hero_portrait = load('res://Scenes/Heroes/' + GameData.hero_name + '.tscn').instance()
 	$HUD/Dashboard/Row/PlayerPortrait/Hero.add_child(hero_portrait)
 		
 # TODO: these could probably use signals for a bit of performance savings
 func _process(_delta):
 	update_ui_wave_info()
 	update_ui_bars()
-
+	
 func set_tower_preview(tower_type, mouse_pos):
-	var drag_tower = load('res://Scenes/Towers/' + tower_type + ".tscn").instance()
+	var drag_tower = load('res://Scenes/Towers/' + GameData.hero_name + '/' + tower_type + ".tscn").instance()
 	drag_tower.set_name('DragTower')
 	drag_tower.modulate = Color('ad54ff3c')
 	
@@ -96,10 +94,10 @@ func _on_Play_pressed():
 		move_button_down()
 		
 func move_button_down():
-	$HUD/GameControls/NinePatchRect.set_position(Vector2(0, 33))
+	$HUD/GameControls/Play.set_position($HUD/GameControls/Play.rect_position + Vector2(0, 33))
 	
 func move_button_up():
-	$HUD/GameControls/NinePatchRect.set_position(Vector2(0, 0))
+	$HUD/GameControls/Play.set_position($HUD/GameControls/Play.rect_position + Vector2(0, -33))
 
 func _on_Fastforward_pressed():
 	if get_parent().build_mode:
@@ -110,3 +108,11 @@ func _on_Fastforward_pressed():
 	else:
 		Engine.set_time_scale(3.0)
 
+func _on_Skills_pressed():
+	var skill_book = load('res://Scenes/UI/Skills/SkillBook.tscn').instance()
+	get_tree().get_nodes_in_group('UI_root')[0].add_child(skill_book)
+	
+	
+	
+	
+	

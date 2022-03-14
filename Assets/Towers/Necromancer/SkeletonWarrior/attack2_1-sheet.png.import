@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SkeletonArcher.png-0c21b1bc66712f078d834202b4a74b66.stex"
+path="res://.import/attack2_1-sheet.png-3cfbf7704ad4e217ab227e845544dae5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/Towers/SkeletonArcher.png"
-dest_files=[ "res://.import/SkeletonArcher.png-0c21b1bc66712f078d834202b4a74b66.stex" ]
+source_file="res://Assets/Towers/Necromancer/SkeletonWarrior/attack2_1-sheet.png"
+dest_files=[ "res://.import/attack2_1-sheet.png-3cfbf7704ad4e217ab227e845544dae5.stex" ]
 
 [params]
 

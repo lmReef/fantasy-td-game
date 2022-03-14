@@ -1,0 +1,172 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Resources/Fonts/ManaSpace_22.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scenes/Items/Item.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Tilesets/UI-elements-64x64.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 132, 64, 56 )
+
+[node name="SkillBook" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+margin_right = 1920.0
+margin_bottom = 980.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+margin_left = 660.0
+margin_top = 188.0
+margin_right = 1260.0
+margin_bottom = 792.0
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_right = 600.0
+stretch_mode = 5
+
+[node name="Background" type="NinePatchRect" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 600.0
+margin_bottom = 604.0
+rect_min_size = Vector2( 600, 600 )
+texture = SubResource( 1 )
+patch_margin_left = 24
+patch_margin_top = 19
+patch_margin_right = 36
+patch_margin_bottom = 19
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/VBoxContainer/Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 22.0
+margin_right = -48.0
+margin_bottom = -32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer"]
+margin_right = 520.0
+margin_bottom = 546.0
+
+[node name="Title" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer"]
+margin_right = 520.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 1 )
+text = "Necromancer Skill Book"
+align = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer"]
+margin_top = 27.0
+margin_right = 520.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 0, 48 )
+
+[node name="SkillTree" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer"]
+margin_top = 79.0
+margin_right = 520.0
+margin_bottom = 546.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Col1" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree"]
+margin_right = 170.0
+margin_bottom = 467.0
+size_flags_horizontal = 3
+
+[node name="Item" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree/Col1" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 170.0
+margin_bottom = 64.0
+
+[node name="Item2" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree/Col1" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 68.0
+margin_right = 170.0
+margin_bottom = 132.0
+
+[node name="Item3" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree/Col1" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 136.0
+margin_right = 170.0
+margin_bottom = 200.0
+
+[node name="Col2" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree"]
+margin_left = 174.0
+margin_right = 345.0
+margin_bottom = 467.0
+size_flags_horizontal = 3
+
+[node name="Item" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree/Col2" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 171.0
+margin_bottom = 64.0
+
+[node name="Item2" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree/Col2" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 68.0
+margin_right = 171.0
+margin_bottom = 132.0
+
+[node name="Item3" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree/Col2" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 136.0
+margin_right = 171.0
+margin_bottom = 200.0
+
+[node name="Item4" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree/Col2" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 204.0
+margin_right = 171.0
+margin_bottom = 268.0
+
+[node name="Col3" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree"]
+margin_left = 349.0
+margin_right = 520.0
+margin_bottom = 467.0
+size_flags_horizontal = 3
+
+[node name="Item" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree/Col3" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 171.0
+margin_bottom = 64.0
+
+[node name="Item2" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree/Col3" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 68.0
+margin_right = 171.0
+margin_bottom = 132.0
+
+[node name="Item3" parent="MarginContainer/CenterContainer/VBoxContainer/Background/MarginContainer/VBoxContainer/SkillTree/Col3" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 136.0
+margin_right = 171.0
+margin_bottom = 200.0

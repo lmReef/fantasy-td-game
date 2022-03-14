@@ -4,13 +4,15 @@ var items = []
 
 func _ready():
 	visible = false
+	
+	GameData.connect("new_tower_selected", self, "set_items")
 
-func set_items(_items, _tower_instance):
-	if _tower_instance.get_name() != 'DragTower':
-		items = _items
+func set_items():
+	if GameData.selected_tower.get_name() != 'DragTower':
+		items = GameData.selected_tower.items
 		
-		$Col/Title.text = _tower_instance.get_name().capitalize() + "'s items"
-		$Col/NinePatchRect/ScrollContainer/TowerInvGrid.tower_instance = _tower_instance
+		$Col/Title.text = GameData.selected_tower.tower_name + "'s items"
+		$Col/NinePatchRect/ScrollContainer/TowerInvGrid.tower_instance = GameData.selected_tower
 		
 		for child in $Col/NinePatchRect/ScrollContainer/TowerInvGrid.get_children(): child.queue_free()
 		for i in items:

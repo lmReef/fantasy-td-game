@@ -1,6 +1,10 @@
 extends Node
 
-var hero = 'Necromancer'
+var hero_name = 'Necromancer'
+var hero_skills
+var hero_towers
+
+var selected_tower = null
 
 var level = 1
 var experience = 0
@@ -14,39 +18,36 @@ signal level_up
 signal gold_updated
 signal health_lost
 signal dead
+signal new_tower_selected
+signal tower_unselected
 
-var hotbar_towers = {
-	'Slot1': {
-		'name': 'SkeletonArcher',
-		'icon_location': 'res://Assets/Icons/Towers/SkeletonArcher.png'
-	},
-	'Slot2': {
-		'name': 'SkeletonArcher',
-		'icon_location': 'res://Assets/Icons/Towers/SkeletonArcher.png'
-	},
-	'Slot3': {
-		'name': 'SkeletonArcher',
-		'icon_location': 'res://Assets/Icons/Towers/SkeletonArcher.png'
-	},
-	'Slot4': {
-		'name': 'SkeletonArcher',
-		'icon_location': 'res://Assets/Icons/Towers/SkeletonArcher.png'
-	},
-	'Slot5': {
-		'name': 'SkeletonArcher',
-		'icon_location': 'res://Assets/Icons/Towers/SkeletonArcher.png'
-	},
-	'Slot6': {
-		'name': 'SkeletonArcher',
-		'icon_location': 'res://Assets/Icons/Towers/SkeletonArcher.png'
-	},
-}
+func _ready():
+	randomize()
+	update_hero_info()
 
-# TODO: probably make this use signals instead for performance
-#func _process(delta):
-#	if experience >= max_experience:
-#		level_up()
+func new_tower_selected(new_tower):
+	if selected_tower != null:
+		tower_unselected()
+	selected_tower = new_tower
+	#get_tree().get_nodes_in_group('tower_stats')[0].update_stats()
+	emit_signal('new_tower_selected')
 
+func tower_unselected():
+	GameData.selected_tower.get_node('Range').visible = false
+	selected_tower = null
+	get_tree().get_nodes_in_group('tower_inv')[0].hide_panel()
+	get_tree().get_nodes_in_group('tower_stats')[0].hide_panel()
+	emit_signal('tower_unselected')
+
+func update_hero_info():
+	var file = File.new()
+	file.open('res://Resources/HeroData/' + hero_name + '.json', file.READ)
+	var json = file.get_as_text()
+	var json_result = JSON.parse(json).result
+	
+	hero_skills = json_result.hero_skills
+	hero_towers = json_result.hero_towers
+	
 func level_up():
 	level += 1
 	min_experience = max_experience
