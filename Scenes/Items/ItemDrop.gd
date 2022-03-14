@@ -11,7 +11,7 @@ var duration = 1.0
 
 func _process(delta):
 	if collected:
-		if global_position == positionB:
+		if global_position >= positionB:
 			inv.add_item($Item.info.duplicate(), self)
 			
 		t += delta / duration

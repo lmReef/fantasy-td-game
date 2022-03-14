@@ -3,7 +3,7 @@ extends TextureRect
 var info
 var dragable = false # TODO: make items only dragable sometimes
 # TODO: maybe make a seperate 'drop' scene in place of items on the ground
-	
+
 func set_info(_info):
 	info = _info
 	texture = load(info.icon_path)
@@ -37,3 +37,21 @@ func get_drag_data(position):
 #func drop_data(position, data):
 	#modulate.a = 1
 #	pass
+
+
+func _on_Item_mouse_entered():
+	var title = info.name
+	var desc = '{effect}\n{desc}'.format({
+		'effect': info.effects.description,
+		'desc': info.description
+	})
+	var pos = Vector2(rect_global_position.x + rect_size.x/2, rect_global_position.y + 20)
+	#var pos = Vector2(get_parent().get_parent().rect_global_position.x, get_parent().get_parent().rect_global_position.y)
+	
+	get_tree().get_nodes_in_group('Tooltip')[0].show_tooltip(
+		title, desc, pos
+	)
+
+
+func _on_Item_mouse_exited():
+	get_tree().get_nodes_in_group('Tooltip')[0].hide_tooltip()

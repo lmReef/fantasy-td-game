@@ -82,14 +82,14 @@ func update_ui_gold():
 
 func _unhandled_input(event):
 	if event.is_action_released("play_pause"):
-		if $HUD/GameControls/Play.pressed:
-			$HUD/GameControls/Play.emit_signal("pressed")
+		$HUD/GameControls/Play/Play.emit_signal("pressed")
 
 func _on_Play_pressed():
+	print('pressed')
 	if get_parent().build_mode:
 		get_parent().cancel_build_mode()
 		
-	if WaveData.mobs_left == 0:
+	if WaveData.mobs_left == 0 || WaveData.current_wave == 0:
 		get_parent().start_next_wave()
 		move_button_down()
 		

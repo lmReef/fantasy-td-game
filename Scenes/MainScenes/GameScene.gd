@@ -53,8 +53,10 @@ func _unhandled_input(event):
 		initiate_build_mode(get_tree().get_nodes_in_group('build_buttons')[4])
 	elif event.is_action_released('hotbar_6'):
 		initiate_build_mode(get_tree().get_nodes_in_group('build_buttons')[5])
-		
 	
+	# TODO: make this work for only unhandled left clicks somehow
+	#elif event.is_action_released("ui_accept"):
+	#	GameData.tower_unselected()
 
 #
 # wave functions
@@ -86,6 +88,9 @@ func initiate_build_mode(tower):
 	if build_mode or GameData.gold < stats.cost:
 		cancel_build_mode()
 		return
+	
+	# TODO: decide if this behavior is wanted
+	#GameData.tower_unselected()
 		
 	build_type = tower.type
 	build_cost = stats.cost

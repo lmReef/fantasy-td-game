@@ -7,7 +7,7 @@ var _stats = {
 	'damage': 20, 
 	'attack_speed': 1.5, 
 	'attack_type': 'Melee', 
-	'cost': 40
+	'cost': 30
 }
 
 func _init().(_stats):

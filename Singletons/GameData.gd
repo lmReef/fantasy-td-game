@@ -29,15 +29,15 @@ func new_tower_selected(new_tower):
 	if selected_tower != null:
 		tower_unselected()
 	selected_tower = new_tower
-	#get_tree().get_nodes_in_group('tower_stats')[0].update_stats()
 	emit_signal('new_tower_selected')
 
 func tower_unselected():
-	GameData.selected_tower.get_node('Range').visible = false
-	selected_tower = null
-	get_tree().get_nodes_in_group('tower_inv')[0].hide_panel()
-	get_tree().get_nodes_in_group('tower_stats')[0].hide_panel()
-	emit_signal('tower_unselected')
+	if selected_tower != null:
+		GameData.selected_tower.get_node('Range').visible = false
+		selected_tower = null
+		get_tree().get_nodes_in_group('tower_inv')[0].hide_panel()
+		get_tree().get_nodes_in_group('tower_stats')[0].hide_panel()
+		emit_signal('tower_unselected')
 
 func update_hero_info():
 	var file = File.new()

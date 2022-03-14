@@ -1,19 +1,19 @@
 extends Control
 
-func show_tooltip(title, desc, pos, cost):
+func show_tooltip(title, desc, pos, cost = null):
 	# set title and description
-	$NinePatchRect/Col/Row/Title.text = title.capitalize()
-	$NinePatchRect/Col/Stats.text = desc
+	$MarginContainer/MarginContainer/Col/Header/Title.text = title.capitalize()
+	$MarginContainer/MarginContainer/Col/Body.text = desc
 	
 	# if cost param is passed then set it, otherwise hide the cost control group
 	if cost:
-		$NinePatchRect/Col/Row/CostGroup/Cost.text = String(cost)
-		$NinePatchRect/Col/Row/CostGroup.visible = true
+		$MarginContainer/MarginContainer/Col/Header/CostGroup/Cost.text = String(cost)
+		$MarginContainer/MarginContainer/Col/Header/CostGroup.visible = true
 	else:
-		$NinePatchRect/Col/Row/CostGroup.visible = false
+		$MarginContainer/MarginContainer/Col/Header/CostGroup.visible = false
 		
 	set_global_position(
-		pos - Vector2($NinePatchRect.rect_size.x/2, $NinePatchRect.rect_size.y + 48)
+		pos - Vector2($MarginContainer.rect_size.x/2, $MarginContainer.rect_size.y + 48)
 	)
 	
 	visible = true
