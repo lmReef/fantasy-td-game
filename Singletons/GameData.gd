@@ -29,11 +29,13 @@ func new_tower_selected(new_tower):
 	if selected_tower != null:
 		tower_unselected()
 	selected_tower = new_tower
+	selected_tower.get_node('Range').visible = true
+	selected_tower.update_range()
 	emit_signal('new_tower_selected')
 
 func tower_unselected():
-	if selected_tower != null:
-		GameData.selected_tower.get_node('Range').visible = false
+	if selected_tower != null and weakref(selected_tower).get_ref():
+		selected_tower.get_node('Range').visible = false
 		selected_tower = null
 		get_tree().get_nodes_in_group('tower_inv')[0].hide_panel()
 		get_tree().get_nodes_in_group('tower_stats')[0].hide_panel()

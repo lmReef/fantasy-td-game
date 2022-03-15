@@ -11,7 +11,7 @@ var duration = 1.0
 
 func _process(delta):
 	if collected:
-		if global_position >= positionB:
+		if is_equal_approx(global_position.x, positionB.x) and is_equal_approx(global_position.y, positionB.y):
 			inv.add_item($Item.info.duplicate(), self)
 			
 		t += delta / duration

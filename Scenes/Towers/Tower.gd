@@ -149,9 +149,6 @@ func _on_TowerSelect_mouse_exited():
 
 # on tower clicked
 func _on_TowerSelect_input_event(viewport, event, shape_idx):
-	if (event is InputEventMouseButton && event.pressed):
+	if (event is InputEventMouseButton && event.pressed && self != null):
 		GameData.new_tower_selected(self)
-		
-		update_range()
-		$Range.visible = true
 
