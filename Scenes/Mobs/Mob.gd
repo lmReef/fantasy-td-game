@@ -1,43 +1,33 @@
 extends PathFollow2D
 
-var health
-var movespeed
-var experience
-var damage
-var gold
-var drop_chances = 1
+var stats
 
 var dead = false
-
-func _init(stats).():
-	health = stats.health
-	movespeed = stats.movespeed
-	experience = stats.experience
-	damage = stats.damage
-	gold = stats.gold
-	drop_chances = stats.drop_chances
 	
 func _ready():
+	# TODO: be aware this line + mob stats implementation may cause some fokery
+	stats = MobData.mobs[self.get_name().rstrip("0123456789")].duplicate()
+
 	apply_difficulty_scaling()
 	
-	$HealthBar.max_value = health
-	$HealthBar.value = health
+	$HealthBar.max_value = stats.health
+	$HealthBar.value = stats.health
 	set_as_toplevel(true)
 	$HealthBar.set_as_toplevel(true)
 
 func _process(delta):
 	move(delta)
 	if unit_offset == 1.0:
-		GameData.take_damage(damage)
+		GameData.take_damage(stats.damage)
 		WaveData.mob_died()
 		queue_free()
 	#flip_sprite()
 	
 func apply_difficulty_scaling():
-	health = health * (WaveData.difficulty * 0.15)
+	stats.health = stats.health * (WaveData.difficulty * 0.15)
 	
 func move(delta):
-	set_offset(get_offset() + movespeed * delta)
+	set_offset(get_offset() + stats.movespeed * delta)
 	if $HealthBar: $HealthBar.set_position(position - Vector2(20, 40))
 
 # TODO: sus this somehow
@@ -49,16 +39,16 @@ func flip_sprite():
 	pass
 
 func on_hit(hit_damage):
-	health -= hit_damage
+	stats.health -= hit_damage
 	$AnimationPlayer.play('hit')
-	$HealthBar.value = health
-	if health <= 0 and not dead:
+	$HealthBar.value = stats.health
+	if stats.health <= 0 and not dead:
 		dead = true # otherwise every attacking tower counts as a kill
 		on_dead()
 
 func on_dead():
-	GameData.award_experience(experience)
-	GameData.update_gold(gold)
+	GameData.award_experience(stats.experience)
+	GameData.update_gold(stats.gold)
 	WaveData.mob_died()
 	var drop = ItemData.get_drop(1)
 	if drop:

@@ -1,8 +1,26 @@
 extends Node
 
 var mobs = {
-	'Scrapper': load('res://Scenes/Mobs/Scrapper.tscn').instance().stats,
-	'Fighter': load('res://Scenes/Mobs/Fighter.tscn').instance().stats,
+	'Scrapper': {
+		'health': 20,
+		'movespeed': 200,
+		'damage': 1,
+		'experience': 15,
+		'gold': 1,
+		'cost': 10,
+		'wave_available': 0,
+		'drop_chances': 1
+	},
+	'Fighter': {
+		'health': 38,
+		'movespeed': 190,
+		'damage': 1,
+		'experience': 19,
+		'gold': 2,
+		'cost': 20,
+		'wave_available': 5,
+		'drop_chances': 1
+	},
 }
 
 func filter_wave_available(wave):
