@@ -50,10 +50,10 @@ func on_dead():
 	GameData.award_experience(stats.experience)
 	GameData.update_gold(stats.gold)
 	WaveData.mob_died()
-	var drop = ItemData.get_drop(1)
+	var drop = ItemData.get_drop(stats.drop_chances)
 	if drop:
 		get_parent().add_child(drop)
-		drop.position = global_position + Vector2(0, -25) + Vector2(rand_range(-20, 20), rand_range(-20, 20))
+		drop.global_position = global_position - (drop.get_node("Item").rect_size/2) + Vector2(rand_range(-20, 20), rand_range(-20, 20))
 	
 	yield(get_tree().create_timer(0.2), "timeout")
 	self.queue_free()

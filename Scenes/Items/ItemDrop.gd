@@ -25,3 +25,4 @@ func set_info(_info):
 func _on_Area2D_mouse_entered():
 	collected = true
 	positionA = global_position
+
