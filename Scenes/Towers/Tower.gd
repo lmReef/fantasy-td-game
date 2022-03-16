@@ -33,6 +33,11 @@ var stats = {
 	'cost': 9999
 }
 
+var insights = {
+	'damage_done': 0,
+	'kills': 0,
+}
+
 var items = []
 
 var level = 0
@@ -114,10 +119,16 @@ func attack():
 		var proj = Projectile.instance()
 		proj.setup(target.global_position)
 		get_parent().add_child(proj)
-	target.on_hit(stats.damage)
+	target.on_hit(stats.damage, self)
 	var timer_speed = 1 / stats.attack_speed # 1 / attacks per second
 	yield(get_tree().create_timer(timer_speed), "timeout")
 	ready = true
+	
+func add_to_damage_done(amount):
+	insights.damage_done += amount
+	
+func add_to_kills():
+	insights.kills += 1
 	
 func attack_with_projectile(_texture):
 	var proj = Projectile.instance()

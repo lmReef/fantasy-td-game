@@ -4,11 +4,16 @@ func _ready():
 	visible = false
 	
 	GameData.connect("new_tower_selected", self, "update_stats")
+	
+func _process(delta):
+	if GameData.selected_tower:
+		update_stats()
 
 func update_stats():
 	if GameData.selected_tower.get_name() != 'DragTower':
 		var total_stats = GameData.selected_tower.stats
 		var item_stats = GameData.selected_tower.get_total_item_bonuses()
+		var insights = GameData.selected_tower.insights
 		
 		$Col/Title.text = GameData.selected_tower.get_name().capitalize()
 		
@@ -23,6 +28,9 @@ func update_stats():
 		$Col/Stats/Range/Total.text = String(total_stats.tower_range)
 		$Col/Stats/Range/Items.text = '(+' + String(item_stats.tower_range) + ')'
 		$Col/Stats/Range/Skills.text = '(+0)'
+		
+		$Col/Stats/DamageDone.text = 'Damage done: ' + String(int(insights.damage_done))
+		$Col/Stats/Kills.text = 'Kills: ' + String(insights.kills)
 		
 		visible = true
 

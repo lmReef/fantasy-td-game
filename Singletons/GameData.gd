@@ -8,7 +8,7 @@ var selected_tower = null
 
 var level = 1
 var experience = 0
-var max_experience = 100
+var max_experience = 250
 var min_experience = 0
 var health = 10
 var max_health = 10
@@ -26,6 +26,8 @@ func _ready():
 	update_hero_info()
 
 func new_tower_selected(new_tower):
+	if new_tower.get_name() == "DragTower":
+		return
 	if selected_tower != null:
 		tower_unselected()
 	selected_tower = new_tower
@@ -49,11 +51,11 @@ func update_hero_info():
 	
 	hero_skills = json_result.hero_skills
 	hero_towers = json_result.hero_towers
-	
+
 func level_up():
 	level += 1
 	min_experience = max_experience
-	max_experience = int(level * 100 * (WaveData.difficulty * 0.5))
+	max_experience = int(level * 100 * (WaveData.difficulty * 0.4)) + 150
 	emit_signal("level_up")
 	
 	# check for xp overflow

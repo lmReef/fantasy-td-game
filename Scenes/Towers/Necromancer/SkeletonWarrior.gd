@@ -4,10 +4,10 @@ var tower_name = 'Skeleton Warrior'
 
 var _stats = {
 	'tower_range': 250, 
-	'damage': 20, 
+	'damage': 18, 
 	'attack_speed': 1.5, 
 	'attack_type': 'Melee', 
-	'cost': 30
+	'cost': 35
 }
 
 func _init().(_stats):

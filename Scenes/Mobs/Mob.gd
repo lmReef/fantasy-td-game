@@ -38,12 +38,15 @@ func flip_sprite():
 	#	$KinematicBody2D/Sprite.set_flip_h(true)
 	pass
 
-func on_hit(hit_damage):
+func on_hit(hit_damage, attacker):
 	stats.health -= hit_damage
+	if stats.health >= 0: attacker.add_to_damage_done(hit_damage)
+	else: attacker.add_to_damage_done(hit_damage + stats.health)
 	$AnimationPlayer.play('hit')
 	$HealthBar.value = stats.health
 	if stats.health <= 0 and not dead:
 		dead = true # otherwise every attacking tower counts as a kill
+		attacker.add_to_kills()
 		on_dead()
 
 func on_dead():
