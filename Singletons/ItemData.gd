@@ -50,13 +50,14 @@ func get_drop(chances):
 		var roll_chance = rng.randi_range(0, 100)
 		if roll < roll_chance: roll = roll_chance
 	
-	if roll > 0:
-		return get_item_drop(items[common_items[rng.randi_range(0, common_items.size()-1)]].name)
-	elif roll > 99:
-		return get_item_drop(items[legendary_items[rng.randi_range(0, legendary_items.size()-1)]].name)
-	elif roll > 95:
-		return get_item_drop(items[rare_items[rng.randi_range(0, rare_items.size()-1)]].name)
-	elif roll > 80:
+	#if roll > 0:
+	#	return get_item_drop(items[common_items[rng.randi_range(0, common_items.size()-1)]].name)
+	
+	#if roll > 99:
+	#	return get_item_drop(items[legendary_items[rng.randi_range(0, legendary_items.size()-1)]].name)
+	#elif roll > 95:
+	#	return get_item_drop(items[rare_items[rng.randi_range(0, rare_items.size()-1)]].name)
+	if roll > 90:
 		return get_item_drop(items[common_items[rng.randi_range(0, common_items.size()-1)]].name)
 	elif roll < -10:
 		return get_item_drop(items[cursed_items[rng.randi_range(0, cursed_items.size()-1)]].name)

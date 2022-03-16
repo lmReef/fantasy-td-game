@@ -83,9 +83,10 @@ func update_ui_gold():
 func _unhandled_input(event):
 	if event.is_action_released("play_pause"):
 		$HUD/GameControls/Play/Play.emit_signal("pressed")
+	elif event.is_action_released("fast_forward"):
+		$HUD/GameControls/FastForward/Fastforward.emit_signal("pressed")
 
 func _on_Play_pressed():
-	print('pressed')
 	if get_parent().build_mode:
 		get_parent().cancel_build_mode()
 		
@@ -100,13 +101,13 @@ func move_button_up():
 	$HUD/GameControls/Play.set_position($HUD/GameControls/Play.rect_position + Vector2(0, -33))
 
 func _on_Fastforward_pressed():
-	if get_parent().build_mode:
-		get_parent().cancel_build_mode()
+	#if get_parent().build_mode:
+	#	get_parent().cancel_build_mode()
 		
 	if Engine.get_time_scale() != 1.0:
 		Engine.set_time_scale(1.0)
 	else:
-		Engine.set_time_scale(3.0)
+		Engine.set_time_scale(2.0)
 
 func _on_Skills_pressed():
 	var skill_book = load('res://Scenes/UI/Skills/SkillBook.tscn').instance()
