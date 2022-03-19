@@ -1,0 +1,140 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Resources/Fonts/ManaSpace_22.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/Tilesets/UI-elements-64x64.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/Animated Book/1alt.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 6, 262, 52, 52 )
+
+[node name="WaveInfo" type="NinePatchRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -960.0
+margin_right = -625.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 64 )
+texture = SubResource( 11 )
+patch_margin_left = 21
+patch_margin_top = 21
+patch_margin_right = 21
+patch_margin_bottom = 21
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 12.0
+margin_right = -15.0
+margin_bottom = -6.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="HBoxContainer"]
+margin_right = 5.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="WaveNumberLabel" type="Label" parent="HBoxContainer"]
+margin_left = 9.0
+margin_top = 11.0
+margin_right = 99.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 1 )
+text = "Wave 0"
+
+[node name="Spacer2" type="Control" parent="HBoxContainer"]
+margin_left = 103.0
+margin_right = 108.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="Spacer3" type="Control" parent="HBoxContainer"]
+margin_left = 112.0
+margin_right = 117.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="Spacer4" type="Control" parent="HBoxContainer"]
+margin_left = 121.0
+margin_right = 126.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="MobsLeftLabel" type="Label" parent="HBoxContainer"]
+margin_left = 130.0
+margin_top = 11.0
+margin_right = 295.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 1 )
+text = "Mobs left 0"
+
+[node name="Spacer5" type="Control" parent="HBoxContainer"]
+margin_left = 299.0
+margin_right = 305.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="Binders" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -15.0
+margin_right = 1.0
+margin_bottom = -47.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="Binders"]
+margin_right = 54.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Binders"]
+margin_left = 58.0
+margin_right = 90.0
+margin_bottom = 32.0
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="Spacer2" type="Control" parent="Binders"]
+margin_left = 94.0
+margin_right = 148.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect2" type="TextureRect" parent="Binders"]
+margin_left = 152.0
+margin_right = 184.0
+margin_bottom = 32.0
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="Spacer3" type="Control" parent="Binders"]
+margin_left = 188.0
+margin_right = 242.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect3" type="TextureRect" parent="Binders"]
+margin_left = 246.0
+margin_right = 278.0
+margin_bottom = 32.0
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="Spacer4" type="Control" parent="Binders"]
+margin_left = 282.0
+margin_right = 336.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

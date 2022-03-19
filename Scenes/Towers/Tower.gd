@@ -58,6 +58,7 @@ func _ready():
 	$Range/Radius.shape.radius = stats.tower_range / 2 # sets radius not diameter
 	update_range()
 
+
 func _physics_process(_delta):
 	if mobs.size() != 0 and built:
 		target_mob()
@@ -116,9 +117,9 @@ func attack():
 	if $AnimationPlayer:
 		$AnimationPlayer.playback_speed = 1 * stats.attack_speed
 		$AnimationPlayer.play('attack')
-		var proj = Projectile.instance()
-		proj.setup(target.global_position)
-		get_parent().add_child(proj)
+		#var proj = Projectile.instance()
+		#proj.setup(target.global_position)
+		#get_parent().add_child(proj)
 	target.on_hit(stats.damage, self)
 	var timer_speed = 1 / stats.attack_speed # 1 / attacks per second
 	yield(get_tree().create_timer(timer_speed), "timeout")
