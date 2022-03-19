@@ -12,6 +12,7 @@ region = Rect2( 522, 6, 46, 46 )
 margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
+rect_clip_content = true
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -32,11 +33,13 @@ margin_right = -5.0
 margin_bottom = -5.0
 rect_clip_content = true
 mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Icon" type="TextureRect" parent="Container"]
 margin_right = 54.0
 margin_bottom = 54.0
-rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 28, 20 )
 texture = ExtResource( 1 )
 expand = true

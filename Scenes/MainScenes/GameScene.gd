@@ -35,11 +35,11 @@ func _unhandled_input(event):
 		# hide tower info panels
 		if GameData.selected_tower != null:
 			GameData.tower_unselected()
-			
+
 	elif event.is_action_released("ui_accept") and build_mode and build_valid:
 		verify_and_build()
 		cancel_build_mode()
-		
+
 	# hotbar controls
 	elif event.is_action_released('hotbar_1'):
 		initiate_build_mode(get_tree().get_nodes_in_group('build_buttons')[0])
